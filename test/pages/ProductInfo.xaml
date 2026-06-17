@@ -75,7 +75,31 @@
                       HorizontalAlignment="Center">
 
             <ListView x:Name="MainListView"
-                      MouseDoubleClick="MainListView_MouseDoubleClick">
+                      MouseDoubleClick="MainListView_MouseDoubleClick"
+                      BorderThickness="0"
+                      Background="Transparent">
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch"/>
+
+                        <Setter Property="Padding"
+                                Value="0"/>
+
+                        <Setter Property="Margin"
+                                Value="0,2"/>
+
+                        <Setter Property="BorderThickness"
+                                Value="0"/>
+
+                        <Setter Property="Background"
+                                Value="Transparent"/>
+
+                        <Setter Property="FocusVisualStyle"
+                                Value="{x:Null}"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -83,53 +107,56 @@
                                 Background="#FFFFFF"
                                 BorderBrush="Black"
                                 BorderThickness="2"
+                                Width="750"
+                                MinHeight="130"
                                 Margin="2">
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="120"/>
-                                    <ColumnDefinition Width="500"/>
+                                    <ColumnDefinition Width="130"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="110"/>
                                 </Grid.ColumnDefinitions>
+
                                 <Image Grid.Column="0"
-                                   Source="{Binding FullImagePath}"
-                                   Height="100"
-                                   Width="100"
-                                   Margin="10"
-                                   Stretch="Uniform"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
-                                <StackPanel Grid.Column="0"
+                                       Source="{Binding FullImagePath}"
+                                       Height="100"
+                                       Width="100"
+                                       Margin="10"
+                                       Stretch="Uniform"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+
+                                <StackPanel Grid.Column="1"
                                             Orientation="Vertical"
-                                            Margin="10">
+                                            Margin="10"
+                                            VerticalAlignment="Center">
 
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock FontWeight="Bold"
-                                                   Text="{Binding Article}"/>
+                                    <TextBlock FontWeight="Bold"
+                                               TextWrapping="Wrap">
+                                        <Run Text="{Binding Category.Name}"/>
+                                        <Run Text=" | "/>
+                                        <Run Text="{Binding Name}"/>
+                                    </TextBlock>
 
-                                        <TextBlock FontWeight="Bold"
-                                                   Text=" - "/>
+                                    <TextBlock TextWrapping="Wrap"
+                                               Margin="0,4,0,0">
+                                        <Run Text="Описание товара: "/>
+                                        <Run Text="{Binding Description}"/>
+                                    </TextBlock>
 
-                                        <TextBlock FontWeight="Bold"
-                                                   Text="{Binding Name}"/>
+                                    <TextBlock Margin="0,2,0,0">
+                                        <Run Text="Производитель: "/>
+                                        <Run Text="{Binding Manufacturer.Name}"/>
+                                    </TextBlock>
 
-                                        <TextBlock FontWeight="Bold"
-                                                   Text=" - "/>
+                                    <TextBlock Margin="0,2,0,0">
+                                        <Run Text="Поставщик: "/>
+                                        <Run Text="{Binding Supplier.Name}"/>
+                                    </TextBlock>
 
-                                        <TextBlock FontWeight="Bold"
-                                                   Text="{Binding Category.Name}"/>
-                                    </StackPanel>
-
-                                    <TextBlock Text="{Binding Description}"
-                                               FontStyle="Italic"
-                                               TextWrapping="Wrap"/>
-
-                                    <TextBlock Text="{Binding Manufacturer.Name,
-                                               StringFormat={}Производитель: {0}}"/>
-
-                                    <TextBlock Text="{Binding Supplier.Name,
-                                               StringFormat={}Поставщик: {0}}"/>
-
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0,2,0,0">
                                         <TextBlock Text="Цена: "/>
 
                                         <TextBlock Text="{Binding Price}">
@@ -150,10 +177,26 @@
                                             </TextBlock.Style>
                                         </TextBlock>
 
-                                        <TextBlock Text=" Итоговая цена: "/>
+                                        <TextBlock Text=" Итоговая цена: ">
 
-                                        <TextBlock Text="{Binding FinalPrice}"
-                                                   Foreground="Black">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Visibility"
+                                                            Value="Collapsed"/>
+
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding HasDiscount}"
+                                                                     Value="True">
+
+                                                            <Setter Property="Visibility"
+                                                                    Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+
+                                        <TextBlock Text="{Binding FinalPrice}">
 
                                             <TextBlock.Style>
                                                 <Style TargetType="TextBlock">
@@ -173,36 +216,57 @@
                                         </TextBlock>
                                     </StackPanel>
 
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="На складе: "/>
-                                        <TextBlock Text="{Binding Amount}"/>
-                                        <TextBlock Text=" "/>
-                                        <TextBlock Text="{Binding Measurement.Name}"/>
-                                    </StackPanel>
+                                    <TextBlock Margin="0,2,0,0">
+                                        <Run Text="Единица измерения: "/>
+                                        <Run Text="{Binding Measurement.Name}"/>
+                                    </TextBlock>
 
-                                    <TextBlock Text="{Binding Discount,
-                                               StringFormat={}Скидка: {0}%}"/>
+                                    <TextBlock Margin="0,2,0,0">
+                                        <Run Text="Количество на складе: "/>
+                                        <Run Text="{Binding Amount}"/>
+                                    </TextBlock>
                                 </StackPanel>
 
-                                
+                                <Border Grid.Column="2"
+                                        BorderBrush="Black"
+                                        BorderThickness="1,0,0,0"
+                                        VerticalAlignment="Stretch">
+
+                                    <StackPanel VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"
+                                                Margin="8">
+
+                                        <TextBlock Text="Действующая скидка"
+                                                   TextWrapping="Wrap"
+                                                   TextAlignment="Center"
+                                                   FontWeight="Bold"
+                                                   Margin="0,0,0,8"/>
+
+                                        <TextBlock Text="{Binding Discount,
+                                                   StringFormat={}{0}%}"
+                                                   TextAlignment="Center"
+                                                   FontSize="18"
+                                                   FontWeight="Bold"/>
+                                    </StackPanel>
+                                </Border>
                             </Grid>
                         </Border>
 
                         <DataTemplate.Triggers>
-                            <DataTrigger Binding="{Binding BigDiscount}"
-                                         Value="True">
-
-                                <Setter TargetName="ItemBorder"
-                                        Property="Background"
-                                        Value="#483D8B"/>
-                            </DataTrigger>
-
                             <DataTrigger Binding="{Binding OutOfStock}"
                                          Value="True">
 
                                 <Setter TargetName="ItemBorder"
                                         Property="Background"
                                         Value="#D3D3D3"/>
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding BigDiscount}"
+                                         Value="True">
+
+                                <Setter TargetName="ItemBorder"
+                                        Property="Background"
+                                        Value="#483D8B"/>
                             </DataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>
