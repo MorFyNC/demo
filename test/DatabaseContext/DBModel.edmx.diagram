@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="85caa658f187409880b731e2e242a633" Name="Diagram1">
+        <EntityTypeShape EntityType="BicycleShopModel.Address" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BicycleShopModel.Category" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BicycleShopModel.City" Width="1.5" PointX="1.5" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BicycleShopModel.Manufacturer" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BicycleShopModel.Measurement" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BicycleShopModel.Order" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BicycleShopModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BicycleShopModel.Product_Order" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BicycleShopModel.Roles" Width="1.5" PointX="1.5" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BicycleShopModel.Status" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="BicycleShopModel.Streets" Width="1.5" PointX="1.5" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BicycleShopModel.Supplier" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BicycleShopModel.Users" Width="1.5" PointX="0.75" PointY="26.375" IsExpanded="true" />
+        <AssociationConnector Association="BicycleShopModel.FK_Address_Streets" ManuallyRouted="false" />
+        <AssociationConnector Association="BicycleShopModel.FK_Order_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="BicycleShopModel.FK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="BicycleShopModel.FK_Streets_City" ManuallyRouted="false" />
+        <AssociationConnector Association="BicycleShopModel.FK_Product_Manufacturer" ManuallyRouted="false" />
+        <AssociationConnector Association="BicycleShopModel.FK_Product_Measurement" ManuallyRouted="false" />
+        <AssociationConnector Association="BicycleShopModel.FK_Order_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="BicycleShopModel.FK_Order_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BicycleShopModel.FK_Product_Order_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="BicycleShopModel.FK_Product_Order_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="BicycleShopModel.FK_Product_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="BicycleShopModel.FK_Users_Roles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

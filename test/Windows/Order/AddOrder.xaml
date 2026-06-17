@@ -1,0 +1,101 @@
+﻿<Window x:Class="test.Windows.Order.AddOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:test.Windows.Order"
+        mc:Ignorable="d"
+        Title="МебельОрг - Добавление заказа"
+        Height="520"
+        Width="600"
+        FontFamily="Calibri"
+        FontSize="15"
+        Icon="/Materials/Logo/icon.ico"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Grid Background="#FFFFFF" Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Товар:"
+                   Margin="0,0,0,5"/>
+
+        <ComboBox x:Name="ArticleCB"
+                  Grid.Row="1"
+                  Height="30"
+                  Margin="0,0,0,15"/>
+
+        <TextBlock Grid.Row="2"
+                   Text="Статус заказа:"
+                   Margin="0,0,0,5"/>
+
+        <ComboBox x:Name="StatusCB"
+                  Grid.Row="3"
+                  Height="30"
+                  Margin="0,0,0,15"/>
+
+        <StackPanel Grid.Row="4">
+            <TextBlock Text="Адрес пункта выдачи:"
+                       Margin="0,0,0,5"/>
+
+            <ComboBox x:Name="AddressCB"
+                      Height="35"
+                      Margin="0,0,0,15">
+
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding HomeIndex}"/>
+                            <TextBlock Text=", г. "/>
+                            <TextBlock Text="{Binding CityName}"/>
+                            <TextBlock Text=", ул. "/>
+                            <TextBlock Text="{Binding StreetName}"/>
+                            <TextBlock Text=", д. "/>
+                            <TextBlock Text="{Binding Home_Number}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Text="Дата заказа:"
+                       Margin="0,0,0,5"/>
+
+            <DatePicker x:Name="OrderDateDP"
+                        Height="30"
+                        Margin="0,0,0,15"/>
+
+            <TextBlock Text="Дата выдачи:"
+                       Margin="0,0,0,5"/>
+
+            <DatePicker x:Name="ShipmentOrderDP"
+                        Height="30"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,25,0,0">
+
+            <Button Content="Отмена"
+                    Width="120"
+                    Height="35"
+                    Margin="5"
+                    Click="CancelButton_Click"/>
+
+            <Button Content="Добавить заказ"
+                    Width="150"
+                    Height="35"
+                    Margin="5"
+                    Click="SubmitButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
